@@ -5,7 +5,10 @@ import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +41,15 @@ public class NoticiaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		MongoCollection<Noticia> noticias = ConexaoMongo.db().getCollection("noticia", Noticia.class);
+		// passa o find do mongo para uma lista
+		List<Noticia> objetosNoticias = new ArrayList<>();
+		for (Noticia noticia : noticias.find()) {
+			objetosNoticias.add(noticia);
+		}
+		request.setAttribute("noticias", objetosNoticias);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/noticia/listar.jsp");
+		dispatcher.forward(request, response);
 
 	}
 
