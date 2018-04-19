@@ -1,5 +1,9 @@
 package dao;
 
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +18,17 @@ public class ComentarioMongoDB {
 	public void inserir(Comentario comentario) {
 
 		comentarios.insertOne(comentario);
+	}
+
+	public void editar(Comentario comentario) {
+		comentarios.updateOne(eq(comentario.getId()),
+				combine(set("titulo", comentario.getAutor()), set("texto", comentario.getTexto())));
+	}
+
+	public void deletar(Comentario comentario) {
+
+		comentarios.deleteOne(eq(comentario.getId()));
+
 	}
 
 	public List<Comentario> listar() {

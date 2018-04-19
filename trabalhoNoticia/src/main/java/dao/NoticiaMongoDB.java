@@ -1,5 +1,9 @@
 package dao;
 
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +18,18 @@ public class NoticiaMongoDB {
 	public void inserir(Noticia noticia) {
 
 		noticias.insertOne(noticia);
+
+	}
+
+	public void editar(Noticia noticia) {
+		noticias.updateOne(eq(noticia.getId()),
+				combine(set("titulo", noticia.getTitulo()), set("texto", noticia.getTexto())));
+	}
+
+	public void deletar(Noticia noticia) {
+
+		noticias.deleteOne(eq(noticia.getId()));
+
 	}
 
 	public List<Noticia> listar() {
