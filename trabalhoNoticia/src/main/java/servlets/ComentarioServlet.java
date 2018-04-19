@@ -19,7 +19,6 @@ import com.mongodb.client.MongoCollection;
 
 import dao.ConexaoMongo;
 import modelo.Comentario;
-import modelo.Noticia;
 
 /**
  * Servlet implementation class ComentarioServlet
