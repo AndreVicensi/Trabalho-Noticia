@@ -1,8 +1,7 @@
 package servlets;
 
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Updates.combine;
-import static com.mongodb.client.model.Updates.set;
+import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Updates.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,6 +67,7 @@ public class ComentarioServlet extends HttpServlet {
 		comentarioNovo.setAutor(autor);
 		comentarioNovo.setTexto(texto);
 
+		
 		// add no banco
 		comentarios.insertOne(comentarioNovo);
 

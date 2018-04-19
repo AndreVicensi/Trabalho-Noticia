@@ -9,14 +9,12 @@
 </head>
 <body>
 	<table>
-	<tr>
+		<tr>
 			<td>Titulo</td>
-			<td>Noticia</td>
 		</tr>
 		<c:forEach var="noticia" items="${noticias}">
 		<tr>
-			<td> ${noticia.titulo} </td>
-			<td> ${noticia.texto} </td>
+			<td><a href="">${noticia.titulo}</a></td>
 		</tr>	
 		</c:forEach>
 	</table>
