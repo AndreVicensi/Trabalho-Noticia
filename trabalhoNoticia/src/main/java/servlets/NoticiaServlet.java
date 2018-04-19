@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.mongodb.client.MongoCollection;
 
 import dao.ConexaoMongo;
+import dao.NoticiaMongoDB;
 import modelo.Noticia;
 
 /**
@@ -35,19 +36,18 @@ public class NoticiaServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+	NoticiaMongoDB noticiaDB = new NoticiaMongoDB();
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		MongoCollection<Noticia> noticias = ConexaoMongo.db().getCollection("noticia", Noticia.class);
+
 		// passa o find do mongo para uma lista
-		List<Noticia> objetosNoticias = new ArrayList<>();
-		for (Noticia noticia : noticias.find()) {
-			objetosNoticias.add(noticia);
-		}
-		request.setAttribute("noticias", objetosNoticias);
+
+		request.setAttribute("noticias", noticiaDB.listar());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/noticia/listar.jsp");
 		dispatcher.forward(request, response);
 
@@ -55,7 +55,6 @@ public class NoticiaServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		MongoCollection<Noticia> noticias = ConexaoMongo.db().getCollection("noticia", Noticia.class);
 
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("texto");
@@ -65,10 +64,10 @@ public class NoticiaServlet extends HttpServlet {
 		noticiaNova.setTexto(texto);
 
 		// add no banco
-		noticias.insertOne(noticiaNova);
-
+		noticiaDB.inserir(noticiaNova);
 		// fazer update
-		noticias.updateOne(eq("name", "Ada Byron"), combine(set("age", 23), set("name", "Ada Lovelace")));
+		// noticias.updateOne(eq("name", "Ada Byron"), combine(set("age", 23),
+		// set("name", "Ada Lovelace")));
 
 		response.sendRedirect("noticia");
 	}
