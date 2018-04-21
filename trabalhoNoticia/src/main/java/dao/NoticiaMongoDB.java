@@ -7,6 +7,8 @@ import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
 import com.mongodb.client.MongoCollection;
 
 import modelo.Noticia;
@@ -38,6 +40,15 @@ public class NoticiaMongoDB {
 			objetosNoticias.add(noticia);
 		}
 		return objetosNoticias;
-
+	}
+	
+	public Noticia get(ObjectId id) {
+		Noticia noticia = new Noticia();
+		Noticia resultado = noticias.find(eq("id", id)).first();
+		noticia.setId(resultado.getId());
+		noticia.setTexto(resultado.getTexto());
+		noticia.setTitulo(resultado.getTitulo());
+		noticia.setComentarios(resultado.getComentarios());
+		return noticia;
 	}
 }
