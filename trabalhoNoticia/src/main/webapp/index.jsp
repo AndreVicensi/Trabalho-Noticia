@@ -14,7 +14,8 @@
 		</tr>
 		<c:forEach var="noticia" items="${noticias}">
 		<tr>
-			<td><a href="">${noticia.titulo}</a></td>
+			<td><a href="NoticiaServlet?
+				opcao=carregar&codigo=${noticia.id}">${noticia.titulo}</a></td>
 		</tr>	
 		</c:forEach>
 	</table>

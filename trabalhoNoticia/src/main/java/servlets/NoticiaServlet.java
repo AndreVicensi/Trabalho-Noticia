@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bson.types.ObjectId;
+
 import dao.NoticiaMongoDB;
 import modelo.Noticia;
 
@@ -29,9 +31,26 @@ public class NoticiaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setAttribute("noticias", noticiaDB.listar());
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/noticia/listar.jsp");
-		dispatcher.forward(request, response);
+		String opcao = request.getParameter("opcao");
+
+		if (opcao.equals("carregar")) {
+			String codigo = request.getParameter("codigo");
+			ObjectId id = new ObjectId(codigo);
+			request.setAttribute("noticia", noticiaDB.get(id));
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/noticia.jsp");
+			dispatcher.forward(request, response);
+		}
+
+		if (opcao.equals("listar")) {
+			request.setAttribute("noticias", noticiaDB.listar());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+			dispatcher.forward(request, response);
+		}
+
+		// if (opcao.equals("menu")) {
+		// carregarFormulario(request, response);
+		// }
 
 	}
 
@@ -48,7 +67,9 @@ public class NoticiaServlet extends HttpServlet {
 		// add no banco
 		noticiaDB.inserir(noticiaNova);
 
-		response.sendRedirect("noticia");
+		System.out.println(noticiaDB.listar());
+
+		response.sendRedirect("NoticiaServlet?opcao=listar");
 	}
 
 }

@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> </h1>
-	<p> </p>
+	<h1>${noticia.titulo}</h1>
+	<p>${noticia.texto}</p>
 	<form action="ComentarioServlet" method="post">
 		Autor: <input type="text" name="autor">
 		 <br> Comentario: <input name="comentario"> 

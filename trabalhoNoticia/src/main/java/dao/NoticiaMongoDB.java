@@ -44,7 +44,7 @@ public class NoticiaMongoDB {
 	
 	public Noticia get(ObjectId id) {
 		Noticia noticia = new Noticia();
-		Noticia resultado = noticias.find(eq("id", id)).first();
+		Noticia resultado = noticias.find(eq("_id", id)).first();
 		noticia.setId(resultado.getId());
 		noticia.setTexto(resultado.getTexto());
 		noticia.setTitulo(resultado.getTitulo());
