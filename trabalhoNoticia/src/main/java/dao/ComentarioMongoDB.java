@@ -43,7 +43,7 @@ public class ComentarioMongoDB {
 	
 	public Comentario get(ObjectId id) {
 		Comentario comentario = new Comentario();
-		Comentario first = comentarios.find(eq("id", id)).first();
+		Comentario first = comentarios.find(eq("_id", id)).first();
 		comentario.setId(first.getId());
 		comentario.setAutor(first.getAutor());
 		comentario.setTexto(first.getTexto());

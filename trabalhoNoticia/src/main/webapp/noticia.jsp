@@ -9,10 +9,32 @@
 <body>
 	<h1>${noticia.titulo}</h1>
 	<p>${noticia.texto}</p>
+	
+	---------------------------------------
+	</br>
+	</br>
+	<table>
+		<tr>
+			<td>Autor</td>
+			<td>Texto</td>
+		</tr>
+		<c:forEach var="comentario" items="${noticia.comentarios}">
+		<tr>
+			<td>${comentario.autor}</td>
+			<td>${comentario.texto}</td>
+		</tr>	
+		</c:forEach>
+	</table>
+	</br>
+	</br>
+	
 	<form action="ComentarioServlet" method="post">
 		Autor: <input type="text" name="autor">
-		 <br> Comentario: <input name="comentario"> 
+   <br> Comentario: <input name="comentario"> 
 		 <br> <input type="submit" value="ok">
 	</form>
+	
+	
+
 </body>
 </html>
