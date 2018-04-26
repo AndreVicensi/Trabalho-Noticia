@@ -8,8 +8,8 @@
 </head>
 <body>
 	<form action="NoticiaServlet" method="post">
-		Titulo: <input type="text" name="titulo"> 
-		<br> Texto: <input name="texto">
+		Titulo: <input type="text" name="titulo" value="${noticia.titulo}"> 
+		<br> Texto: <input name="texto" value="${noticia.texto}">
 		 <br> <input type="submit" value="ok">
 	</form>
 </body>

@@ -48,9 +48,24 @@ public class NoticiaServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		// if (opcao.equals("menu")) {
-		// carregarFormulario(request, response);
-		// }
+		 if (opcao.equals("excluir")) {
+			 String codigo = request.getParameter("codigo");
+				ObjectId id = new ObjectId(codigo);
+				Noticia noticia = noticiaDB.get(id);
+				noticiaDB.deletar(noticia);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+				dispatcher.forward(request, response);
+		 }
+		 
+
+		 if (opcao.equals("editar")) {
+			 String codigo = request.getParameter("codigo");
+				ObjectId id = new ObjectId(codigo);
+				Noticia noticia = noticiaDB.get(id);
+				request.setAttribute("noticia", noticia);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/adicionar.jsp");
+				dispatcher.forward(request, response);
+		 }
 
 	}
 

@@ -15,7 +15,15 @@
 		<c:forEach var="noticia" items="${noticias}">
 		<tr>
 			<td><a href="NoticiaServlet?
-				opcao=carregar&codigo=${noticia.id}">${noticia.titulo}</a></td>
+				opcao=carregar&codigo=${noticia.id}">${noticia.titulo}</a></td> 
+				<form action="NoticiaServlet?
+				opcao=editar&codigo=${noticia.id}" method="post">
+				<button value="editar"></button>
+				</form>
+				<form action="NoticiaServlet?
+				opcao=excluir&codigo=${noticia.id}" method="post">
+				<button value="excluir"></button> 
+				</form>
 		</tr>	
 		</c:forEach>
 	</table>
