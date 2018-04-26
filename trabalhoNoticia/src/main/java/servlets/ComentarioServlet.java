@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.bson.types.ObjectId;
 
 import dao.ComentarioMongoDB;
+import dao.NoticiaMongoDB;
 import modelo.Comentario;
+import modelo.Noticia;
 
 /**
  * Servlet implementation class ComentarioServlet
@@ -52,7 +54,8 @@ public class ComentarioServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		String codNoticia = request.getParameter("id");
+		ObjectId id = new ObjectId(codNoticia);
 		String autor = request.getParameter("autor");
 		String texto = request.getParameter("texto");
 
@@ -61,9 +64,12 @@ public class ComentarioServlet extends HttpServlet {
 		comentarioNovo.setTexto(texto);
 
 		// add no banco
-		comentarioDB.inserir(comentarioNovo);
-
-		response.sendRedirect("ComentarioServlet?opcao=listar");
+		NoticiaMongoDB noticiadb = new NoticiaMongoDB();
+		Noticia noticia = noticiadb.get(id);
+		noticia.getComentarios().add(comentarioNovo);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("NoticiaServlet?opcao=carregar&codigo="
+				+ codNoticia);
+		dispatcher.forward(request, response);
 	}
 
 }

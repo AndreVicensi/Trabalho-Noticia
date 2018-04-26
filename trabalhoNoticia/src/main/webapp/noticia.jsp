@@ -11,8 +11,8 @@
 	<p>${noticia.texto}</p>
 	
 	---------------------------------------
-	</br>
-	</br>
+	<br>
+	<br>
 	<table>
 		<tr>
 			<td>Autor</td>
@@ -25,10 +25,11 @@
 		</tr>	
 		</c:forEach>
 	</table>
-	</br>
-	</br>
+	<br>
+	<br>
 	
 	<form action="ComentarioServlet" method="post">
+	<input type="hidden" value="${param.noticia.id}" name="id">
 		Autor: <input type="text" name="autor">
    <br> Comentario: <input name="comentario"> 
 		 <br> <input type="submit" value="ok">
