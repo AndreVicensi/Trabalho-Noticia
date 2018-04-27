@@ -5,12 +5,16 @@ import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 
+import modelo.Comentario;
 import modelo.Noticia;
 
 public class NoticiaMongoDB {
@@ -19,7 +23,30 @@ public class NoticiaMongoDB {
 
 	public void inserir(Noticia noticia) {
 
+		// ArrayList<Comentario> comentarios = new ArrayList<>();
+		// noticia.setComentarios(comentarios);
+
 		noticias.insertOne(noticia);
+
+	}
+
+	public void inserirComentario(Noticia noticia, Comentario comentario) {
+
+		// BasicDBObject comentarioObj = new BasicDBObject();
+		// comentarioObj.put("autor", comentario.getAutor());
+		// comentarioObj.put("texto", comentario.getTexto());
+
+		noticia.setComentario(comentario);
+
+		noticias.updateOne(eq(noticia.getId()), combine(set("comentario", noticia.getComentario())));
+
+	}
+
+	public void deletar(Noticia noticia, Comentario comentario) {
+
+		// noticia.getComentario().remove(comentario);
+
+		noticias.deleteOne(eq(comentario.getId()));
 
 	}
 
@@ -41,14 +68,23 @@ public class NoticiaMongoDB {
 		}
 		return objetosNoticias;
 	}
-	
+
+	// public List<Comentario> listarComentarios(Noticia noticia) {
+	// return noticia.getComentarios();
+	// }
+
+	public Comentario get(Noticia noticia) {
+
+		return noticia.getComentario();
+	}
+
 	public Noticia get(ObjectId id) {
 		Noticia noticia = new Noticia();
 		Noticia resultado = noticias.find(eq("_id", id)).first();
 		noticia.setId(resultado.getId());
 		noticia.setTexto(resultado.getTexto());
 		noticia.setTitulo(resultado.getTitulo());
-		noticia.setComentarios(resultado.getComentarios());
+		noticia.setComentario(resultado.getComentario());
 		return noticia;
 	}
 }

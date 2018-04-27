@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.List;
-
 import org.bson.types.ObjectId;
 
 public class Noticia {
@@ -9,7 +7,7 @@ public class Noticia {
 	private ObjectId id;
 	private String titulo;
 	private String texto;
-	private List<Comentario> comentarios;
+	private Comentario comentario;
 
 	public String getTitulo() {
 		return titulo;
@@ -27,20 +25,20 @@ public class Noticia {
 		this.texto = texto;
 	}
 
-	public List<Comentario> getComentarios() {
-		return comentarios;
-	}
-
-	public void setComentarios(List<Comentario> comentarios) {
-		this.comentarios = comentarios;
-	}
-
 	public ObjectId getId() {
 		return id;
 	}
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public Comentario getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(Comentario comentario) {
+		this.comentario = comentario;
 	}
 
 }

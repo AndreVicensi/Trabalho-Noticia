@@ -14,28 +14,20 @@
 	<p>${noticia.texto}</p>
 	
 	---------------------------------------
+<h3>Comentarios</h3>
+
+			Autor: ${noticia.comentario.autor}
+			<br>
+			Comentario: ${noticia.comentario.texto}
+
 	<br>
 	<br>
-	<table>
-		<tr>
-			<td>Autor</td>
-			<td>Texto</td>
-		</tr>
-		<c:forEach var="comentario" items="${noticia.comentarios}">
-		<tr>
-			<td>${comentario.autor}</td>
-			<td>${comentario.texto}</td>
-		</tr>	
-		</c:forEach>
-	</table>
-	<br>
-	<br>
-	
+	---------------------------------------
 	<form action="ComentarioServlet" method="post">
-	<input type="hidden" value="${param.noticia.id}" name="id">
+	<input type="hidden" value="${noticia.id}" name="id">
 		Autor: <input type="text" name="autor">
-   <br> Comentario: <input name="comentario"> 
-		 <br> <input type="submit" value="ok">
+   <br> Comentario: <textarea name="texto"></textarea> 
+		 <br>  <input type="submit" value="ok">
 	</form>
 	
 	
