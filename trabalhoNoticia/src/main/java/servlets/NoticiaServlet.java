@@ -48,41 +48,53 @@ public class NoticiaServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		 if (opcao.equals("excluir")) {
-			 String codigo = request.getParameter("codigo");
-				ObjectId id = new ObjectId(codigo);
-				Noticia noticia = noticiaDB.get(id);
-				noticiaDB.deletar(noticia);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-				dispatcher.forward(request, response);
-		 }
-		 
+		if (opcao.equals("excluir")) {
+			String codigo = request.getParameter("codigo");
+			ObjectId id = new ObjectId(codigo);
+			Noticia noticia = noticiaDB.get(id);
+			noticiaDB.deletar(noticia);
+			response.sendRedirect("NoticiaServlet?opcao=listar");
 
-		 if (opcao.equals("editar")) {
-			 String codigo = request.getParameter("codigo");
-				ObjectId id = new ObjectId(codigo);
-				Noticia noticia = noticiaDB.get(id);
-				request.setAttribute("noticia", noticia);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/adicionar.jsp");
-				dispatcher.forward(request, response);
-		 }
+		}
+
+		if (opcao.equals("editar")) {
+			String codigo = request.getParameter("codigo");
+			ObjectId id = new ObjectId(codigo);
+			request.setAttribute("noticia", noticiaDB.get(id));
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/editar.jsp");
+			dispatcher.forward(request, response);
+		}
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String titulo = request.getParameter("titulo");
-		String texto = request.getParameter("texto");
+		String opcao = request.getParameter("opcao");
 
-		Noticia noticiaNova = new Noticia();
-		noticiaNova.setTitulo(titulo);
-		noticiaNova.setTexto(texto);
+		if (opcao.equals("adicionar")) {
+			String titulo = request.getParameter("titulo");
+			String texto = request.getParameter("texto");
 
-		// add no banco
-		noticiaDB.inserir(noticiaNova);
+			Noticia noticiaNova = new Noticia();
+			noticiaNova.setTitulo(titulo);
+			noticiaNova.setTexto(texto);
 
-		System.out.println(noticiaDB.listar());
+			// add no banco
+			noticiaDB.inserir(noticiaNova);
+		}
+
+		if (opcao.equals("editar")) {
+			String codigo = request.getParameter("codigo");
+			ObjectId id = new ObjectId(codigo);
+			Noticia noticia = noticiaDB.get(id);
+			String tituloeditado = request.getParameter("titulo");
+			String textoeditado = request.getParameter("texto");
+			noticia.setTitulo(tituloeditado);
+			noticia.setTexto(textoeditado);
+			noticiaDB.editar(noticia);
+
+		}
 
 		response.sendRedirect("NoticiaServlet?opcao=listar");
 	}
