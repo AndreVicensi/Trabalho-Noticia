@@ -12,12 +12,14 @@
 <body>
 	<h1>${noticia.titulo}</h1>
 	<p>${noticia.texto}</p>
+	########################
+	<a href="NoticiaServlet?opcao=editar&codigo=${noticia.id}">editar</a>
+	<br>
+	########################
 	<a href="NoticiaServlet?opcao=excluir&codigo=${noticia.id}">excluir</a>
 	<br>
-	<a href="NoticiaServlet?opcao=editar&codigo=${noticia.id}">editar</a>
-	
 	---------------------------------------
-<h3>Comentarios</h3>
+    <h3>Comentarios</h3>
 
 			Autor: ${noticia.comentario.autor}
 			<br>
