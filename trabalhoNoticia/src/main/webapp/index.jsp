@@ -8,9 +8,10 @@
 <title>Jornal</title>
 </head>
 <body>
+	<img alt="" src="https://jornalexpressaong.files.wordpress.com/2016/02/cropped-banner_jornal.jpg">
 	<table>
 		<tr>
-			<td>Titulo</td>
+			<th>Titulo</th>
 		</tr>
 		<c:forEach var="noticia" items="${noticias}">
 		<tr>

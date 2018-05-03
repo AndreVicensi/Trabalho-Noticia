@@ -4,15 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Editar Notícia</title>
 </head>
 <body>
+	<img alt="" src="https://png.pngtree.com/thumb_back/fw800/back_pic/03/89/91/4157daaf5291cad.jpg">
+	<hr>
 	<form action="NoticiaServlet" method="post">
 	<input type="hidden" name="codigo" value="${noticia.id}"> 
 	<input type="hidden" name="opcao" value="editar"> 
-		Titulo: <input type="text" name="titulo" value="${noticia.titulo}"> 
+		Titulo: <input type="text" name="titulo" value="${noticia.titulo}"> <br>
 		<br> Texto: <input name="texto" value="${noticia.texto}">
-		 <br> <input type="submit" value="ok">
+		 <br> <input type="submit" value="ok" style="border-radius: 100%">
 	</form>
 </body>
 </html>

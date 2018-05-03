@@ -7,18 +7,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>${noticia.titulo} </title>
 </head>
 <body>
 	<h1>${noticia.titulo}</h1>
 	<p>${noticia.texto}</p>
-	########################
-	<a href="NoticiaServlet?opcao=editar&codigo=${noticia.id}">editar</a>
+	<a href="NoticiaServlet?opcao=editar&codigo=${noticia.id}" style="float: right">editar</a>
 	<br>
-	########################
-	<a href="NoticiaServlet?opcao=excluir&codigo=${noticia.id}">excluir</a>
+	<a href="NoticiaServlet?opcao=excluir&codigo=${noticia.id}" style="float: right">excluir</a>
 	<br>
-	---------------------------------------
+	<hr>
     <h3>Comentarios</h3>
 
 			Autor: ${noticia.comentario.autor}
@@ -27,12 +25,13 @@
 
 	<br>
 	<br>
-	---------------------------------------
+	<hr>
 	<form action="ComentarioServlet" method="post">
 	<input type="hidden" value="${noticia.id}" name="id">
 		Autor: <input type="text" name="autor">
+		<br>
    <br> Comentario: <textarea name="texto"></textarea> 
-		 <br>  <input type="submit" value="ok">
+			<input type="submit" value="ok" style="border-radius: 100%">
 	</form>
 	
 	
