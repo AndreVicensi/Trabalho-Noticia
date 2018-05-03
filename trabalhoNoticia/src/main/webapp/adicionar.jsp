@@ -12,7 +12,7 @@
 	<form action="NoticiaServlet" method="post">
 	<input type="hidden" name="opcao" value="adicionar"> 
 		Titulo: <input type="text" name="titulo" value="${noticia.titulo}"> <br>
-		<br> Texto: <input name="texto" value="${noticia.texto}">
+		<br> Texto: <br> <textarea name="texto" value="${noticia.texto}"></textarea>
 		 <br> <input type="submit" value="ok" style="border-radius: 100%">
 	</form>
 </body>

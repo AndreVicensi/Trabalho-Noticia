@@ -30,7 +30,7 @@
 	<input type="hidden" value="${noticia.id}" name="id">
 		Autor: <input type="text" name="autor">
 		<br>
-   <br> Comentario: <textarea name="texto"></textarea> 
+   <br> Comentario: <br> <textarea name="texto"></textarea> 
 			<input type="submit" value="ok" style="border-radius: 100%">
 	</form>
 	
