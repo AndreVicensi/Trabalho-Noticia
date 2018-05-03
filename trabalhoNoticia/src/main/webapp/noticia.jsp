@@ -10,6 +10,7 @@
 <title>${noticia.titulo} </title>
 </head>
 <body>
+<a href="NoticiaServlet?opcao=listar" style="float: right">voltar a lista</a>
 	<h1>${noticia.titulo}</h1>
 	<p>${noticia.texto}</p>
 	<a href="NoticiaServlet?opcao=editar&codigo=${noticia.id}" style="float: right">editar</a>

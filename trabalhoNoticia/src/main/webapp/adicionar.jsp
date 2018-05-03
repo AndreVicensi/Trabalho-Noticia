@@ -7,6 +7,7 @@
 <title>Adicionar Notícia</title>
 </head>
 <body>
+<a href="NoticiaServlet?opcao=listar" style="float: right">voltar a lista</a>
 	<img alt="" src="https://png.pngtree.com/thumb_back/fw800/back_pic/03/89/91/4157daaf5291cad.jpg">
 	<hr>
 	<form action="NoticiaServlet" method="post">
