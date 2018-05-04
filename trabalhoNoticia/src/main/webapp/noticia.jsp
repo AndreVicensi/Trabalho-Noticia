@@ -8,22 +8,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>${noticia.titulo} </title>
+<style type="text/css">
+	ul {
+		display: inline-block;
+		list-style-type: none;
+	}
+
+ 	ul li {
+ 		display: inline;
+ 		padding: 10px;
+ 	}
+  </style>
 </head>
 <body>
-<a href="NoticiaServlet?opcao=listar" style="float: right">voltar a lista</a>
+	<ul>
+	<li><a href="NoticiaServlet?opcao=listar">voltar a lista</a></li>
+	<li><a href="NoticiaServlet?opcao=editar&codigo=${noticia.id} "  >editar</a></li>
+	<li><a href="NoticiaServlet?opcao=excluir&codigo=${noticia.id}" >excluir</a></li>
+	</ul>
+	<br>
 	<h1>${noticia.titulo}</h1>
 	<p>${noticia.texto}</p>
-	<a href="NoticiaServlet?opcao=editar&codigo=${noticia.id}" style="float: right">editar</a>
-	<br>
-	<a href="NoticiaServlet?opcao=excluir&codigo=${noticia.id}" style="float: right">excluir</a>
 	<br>
 	<hr>
     <h3>Comentarios</h3>
-
+    <br>
 			Autor: ${noticia.comentario.autor}
 			<br>
 			Comentario: ${noticia.comentario.texto}
-
 	<br>
 	<br>
 	<hr>
