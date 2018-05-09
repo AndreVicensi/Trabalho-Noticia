@@ -10,6 +10,7 @@
 <title>${noticia.titulo} </title>
 <style type="text/css">
 	ul {
+	float: right;
 		display: inline-block;
 		list-style-type: none;
 	}
@@ -18,6 +19,21 @@
  		display: inline;
  		padding: 10px;
  	}
+ 	
+ 	td{
+ 		padding: 10px;
+ 		background-color: #eee;
+ 	}
+ 	
+ 	th{
+ 		font-size: 24px;
+ 		background-color: #ddd;
+ 	}
+ 	
+ 	label{
+ 		margin-right: 20px;
+ 	}
+ 	
   </style>
 </head>
 <body>
@@ -40,7 +56,7 @@
 		</tr>
 		<c:forEach var="comentario" items="${comentarios}">
 		<tr>
-			<td>${comentario.autor}</td>
+			<td><b>${comentario.autor}</b></td>
 			<td>${comentario.texto}</td>  
 		</tr>	
 		</c:forEach>
@@ -50,10 +66,13 @@
 	<hr>
 	<form action="ComentarioServlet" method="post">
 	<input type="hidden" value="${noticia.id}" name="id">
-		Autor: <input type="text" name="autor">
-		<br>
-   <br> Comentario: <br> <textarea name="texto"></textarea> 
-			<input type="submit" value="ok" style="border-radius: 100%">
+		<label class= autor>Autor:</label>
+		 <input type="text" name="autor">
+		 <br>
+   		<br> 
+   		<label>Comentario:</label> 
+    	<textarea name="texto"></textarea> 
+		<input type="submit" value="ok" style="border-radius: 100%">
 	</form>
 </body>
 </html>
