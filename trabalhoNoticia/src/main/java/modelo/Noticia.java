@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 import org.bson.types.ObjectId;
 
 public class Noticia {
@@ -7,7 +9,15 @@ public class Noticia {
 	private ObjectId id;
 	private String titulo;
 	private String texto;
-	private Comentario comentario;
+	private ArrayList<Comentario> comentarios;
+
+	public ArrayList<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(ArrayList<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
 
 	public String getTitulo() {
 		return titulo;
@@ -33,12 +43,13 @@ public class Noticia {
 		this.id = id;
 	}
 
-	public Comentario getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(Comentario comentario) {
-		this.comentario = comentario;
+	public void addComentario(Comentario comentario) {
+		if(comentarios == null) {
+			comentarios = new ArrayList<>();
+			comentarios.add(comentario);
+		} else {
+			this.comentarios.add(comentario);
+		}
 	}
 
 }

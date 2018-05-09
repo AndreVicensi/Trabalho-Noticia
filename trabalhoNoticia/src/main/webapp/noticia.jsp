@@ -33,9 +33,18 @@
 	<hr>
     <h3>Comentarios</h3>
     <br>
-			Autor: ${noticia.comentario.autor}
-			<br>
-			Comentario: ${noticia.comentario.texto}
+    <table>
+		<tr>
+			<th>Autor</th>
+			<th>Texto</th>
+		</tr>
+		<c:forEach var="comentario" items="${comentarios}">
+		<tr>
+			<td>${comentario.autor}</td>
+			<td>${comentario.texto}</td>  
+		</tr>	
+		</c:forEach>
+	</table>
 	<br>
 	<br>
 	<hr>
@@ -46,8 +55,5 @@
    <br> Comentario: <br> <textarea name="texto"></textarea> 
 			<input type="submit" value="ok" style="border-radius: 100%">
 	</form>
-	
-	
-
 </body>
 </html>

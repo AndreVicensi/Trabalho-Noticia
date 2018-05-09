@@ -22,21 +22,13 @@ public class NoticiaMongoDB {
 
 		// ArrayList<Comentario> comentarios = new ArrayList<>();
 		// noticia.setComentarios(comentarios);
-
 		noticias.insertOne(noticia);
 
 	}
 
 	public void inserirComentario(Noticia noticia, Comentario comentario) {
-
-		// BasicDBObject comentarioObj = new BasicDBObject();
-		// comentarioObj.put("autor", comentario.getAutor());
-		// comentarioObj.put("texto", comentario.getTexto());
-
-		noticia.setComentario(comentario);
-
-		noticias.updateOne(eq(noticia.getId()), combine(set("comentario", noticia.getComentario())));
-
+		noticia.addComentario(comentario);
+		noticias.updateOne(eq(noticia.getId()), combine(set("comentario", noticia.getComentarios())));
 	}
 
 	public void deletar(Noticia noticia, Comentario comentario) {
@@ -70,18 +62,13 @@ public class NoticiaMongoDB {
 	// return noticia.getComentarios();
 	// }
 
-	public Comentario get(Noticia noticia) {
-
-		return noticia.getComentario();
-	}
-
 	public Noticia get(ObjectId id) {
 		Noticia noticia = new Noticia();
 		Noticia resultado = noticias.find(eq("_id", id)).first();
 		noticia.setId(resultado.getId());
 		noticia.setTexto(resultado.getTexto());
 		noticia.setTitulo(resultado.getTitulo());
-		noticia.setComentario(resultado.getComentario());
+		noticia.setComentarios(resultado.getComentarios());
 		return noticia;
 	}
 }

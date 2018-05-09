@@ -36,8 +36,9 @@ public class NoticiaServlet extends HttpServlet {
 		if (opcao.equals("carregar")) {
 			String codigo = request.getParameter("codigo");
 			ObjectId id = new ObjectId(codigo);
-			request.setAttribute("noticia", noticiaDB.get(id));
-
+			Noticia noticia = noticiaDB.get(id);
+			request.setAttribute("noticia", noticia);
+			request.setAttribute("comentarios", noticia.getComentarios());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/noticia.jsp");
 			dispatcher.forward(request, response);
 		}
