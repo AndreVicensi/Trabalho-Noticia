@@ -28,7 +28,7 @@ public class NoticiaMongoDB {
 
 	public void inserirComentario(Noticia noticia, Comentario comentario) {
 		noticia.addComentario(comentario);
-		noticias.updateOne(eq(noticia.getId()), combine(set("comentario", noticia.getComentarios())));
+		noticias.updateOne(eq(noticia.getId()), combine(set("comentarios", noticia.getComentarios())));
 	}
 
 	public void deletar(Noticia noticia, Comentario comentario) {

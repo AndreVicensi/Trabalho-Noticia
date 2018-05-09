@@ -46,10 +46,8 @@ public class Noticia {
 	public void addComentario(Comentario comentario) {
 		if(comentarios == null) {
 			comentarios = new ArrayList<>();
-			comentarios.add(comentario);
-		} else {
-			this.comentarios.add(comentario);
 		}
+		this.comentarios.add(comentario);
 	}
 
 }

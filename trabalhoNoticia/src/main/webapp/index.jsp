@@ -7,7 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Jornal</title>
 </head>
+<style type="text/css">
+	ul {
+		display: inline-block;
+		list-style-type: none;
+	}
+
+ 	ul li {
+ 		display: inline;
+ 		padding: 10px;
+ 	}
+  </style>
 <body>
+	<ul>
+	<li><a href="adicionar.jsp">adicionar noticia</a></li>
+	</ul>
 	<img alt="" src="https://jornalexpressaong.files.wordpress.com/2016/02/cropped-banner_jornal.jpg">
 	<table>
 		<tr>
